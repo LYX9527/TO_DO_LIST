@@ -5,7 +5,7 @@
       height: high + 'px',
     }"
   >
-    <transition-group name="flip-list" tag="div">
+    <transition-group  name="list-complete"  tag="div">
       <item
         v-for="item in todoList"
         :key="item.id"
@@ -13,6 +13,7 @@
         @removeTodo="removeTodo"
         @setStatus="setStatus"
         @setDoing="setDoing"
+        class="list-complete-item"
       ></item>
     </transition-group>
     <div class="fold" @click="change">{{ status ? "收起" : "展开" }}</div>
@@ -61,7 +62,7 @@ export default defineComponent({
   padding-bottom: 50px;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s;
+  transition: all 0.8s;
 }
 .fold {
   position: absolute;
@@ -81,7 +82,22 @@ body {
   margin: 30px;
 }
 
-.flip-list-move {
-  transition: transform 0.8s ease;
+button {
+  margin-right: 10px;
+}
+
+.list-complete-item {
+  transition: all 0.8s ease;
+  margin-right: 10px;
+}
+
+.list-complete-enter-from,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>

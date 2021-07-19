@@ -126,4 +126,7 @@ export default defineComponent({
   // padding: 5px 10px;
   color: #fff;
 }
+button{
+  cursor: pointer;
+}
 </style>

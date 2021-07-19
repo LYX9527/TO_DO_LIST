@@ -5,6 +5,7 @@ import { REMOVE_TODO, SET_DOING_STATUS, SET_TODO, SET_TODO_LIST, SET_TODO_STATUS
 export default {
     [SET_TODO](state: IState, todo: ITodo): void {
         state.list = [todo, ...state.list]
+        state.list = getListOrdered(state.list);
     },
     [SET_TODO_LIST](state: IState, todoList: ITodo[]): void {
         state.list = todoList;
