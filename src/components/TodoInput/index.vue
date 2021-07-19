@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="todovalue" @keyup="setTodovalue" />
+    <input type="text" v-model="todovalue" @keyup="setTodovalue" placeholder="请输入待办"/>
   </div>
 </template>
 
@@ -10,11 +10,10 @@ import { IUseTodo, useTodo } from "../../hooks";
 export default defineComponent({
   setup() {
     const todovalue = ref<string>("");
-    const { setTodo }:IUseTodo = useTodo();
+    const { setTodo }: IUseTodo = useTodo();
     const setTodovalue = (e: KeyboardEvent): void => {
       if (e.keyCode === 13 && todovalue.value.trim().length) {
         setTodo(todovalue.value);
-        // alert('当前数据是'+todovalue.value)
         todovalue.value = "";
       }
     };
@@ -23,5 +22,14 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped lang='less'>
+input{
+  width: 600px;
+  outline: none;
+  border:1px solid #888;
+  box-sizing: border-box;
+  border-radius:5px;
+  padding:0 10px;
+  height: 30px;
+}
 </style>
