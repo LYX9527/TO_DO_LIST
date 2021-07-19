@@ -13,12 +13,12 @@
       @setStatus="setStatus"
       @setDoing="setDoing"
     ></item>
-    <div class="fold" @click="change">展开/收起</div>
+    <div class="fold" @click="change">{{ status ? "收起" : "展开" }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref, toRaw } from "vue";
+import { defineComponent, PropType, Ref, ref, toRaw, watchEffect } from "vue";
 import { IUseTodo, useTodo } from "../../hooks";
 import { ITodo } from "../../typings";
 import item from "./item.vue";
@@ -30,15 +30,23 @@ export default defineComponent({
   setup(props) {
     const { removeTodo, setStatus, setDoing }: IUseTodo = useTodo();
     const high: Ref<number> = ref(130);
+    const status: Ref<boolean> = ref(false);
     const change = (): void => {
       const num: ITodo[] = toRaw(props.todoList)!;
-      if (high.value === 130) {
+      if (status.value === false) {
         high.value = num.length * 50 - 20;
+        status.value = true;
         return;
       }
       high.value = 130;
+      status.value = false;
     };
-    return { removeTodo, setStatus, setDoing, high, change };
+    watchEffect(() => {
+      const num: ITodo[] = toRaw(props.todoList)!;
+      status.value = true;
+      high.value = num.length * 50 - 20;
+    });
+    return { removeTodo, setStatus, setDoing, high, change, status };
   },
 });
 </script>
