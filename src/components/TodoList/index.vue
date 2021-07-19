@@ -5,14 +5,16 @@
       height: high + 'px',
     }"
   >
-    <item
-      v-for="item in todoList"
-      :key="item.id"
-      :item="item"
-      @removeTodo="removeTodo"
-      @setStatus="setStatus"
-      @setDoing="setDoing"
-    ></item>
+    <transition-group name="flip-list" tag="div">
+      <item
+        v-for="item in todoList"
+        :key="item.id"
+        :item="item"
+        @removeTodo="removeTodo"
+        @setStatus="setStatus"
+        @setDoing="setDoing"
+      ></item>
+    </transition-group>
     <div class="fold" @click="change">{{ status ? "收起" : "展开" }}</div>
   </div>
 </template>
@@ -46,7 +48,7 @@ export default defineComponent({
       status.value = true;
       high.value = num.length * 50 - 20;
     });
-    return { removeTodo, setStatus, setDoing, high, change, status };
+    return { removeTodo, setStatus, setDoing, change, high, status };
   },
 });
 </script>
@@ -74,5 +76,12 @@ export default defineComponent({
   font-weight: bold;
   border-radius: 0px 0px 5px 5px;
   cursor: pointer;
+}
+body {
+  margin: 30px;
+}
+
+.flip-list-move {
+  transition: transform 0.8s ease;
 }
 </style>

@@ -1,6 +1,6 @@
 import { REMOVE_TODO, SET_DOING_STATUS, SET_TODO, SET_TODO_LIST, SET_TODO_STATUS } from "@/store/actionTypes"
 import { ITodo, TODO_STATUS } from "@/typings"
-import { watch } from "vue";
+import { toRaw, watch } from "vue";
 import { Store, useStore } from "vuex";
 
 
@@ -53,16 +53,23 @@ function useLocalStorage(): IUseLocalStorage {
     function getLocalList(): ITodo[] {
         return JSON.parse(localStorage.getItem('todoList') || '[]');
     }
-
     function setLocalList(todoList: ITodo[]): void {
-        localStorage.setItem('todoList', JSON.stringify(todoList))
+        localStorage.setItem('todoList', JSON.stringify(todoList));
+        getLocalList();
     }
     return {
         getLocalList,
         setLocalList,
     }
 }
-
+export function getListOrdered(todoList: ITodo[]): ITodo[] {
+    let list: Array<ITodo> = [
+        ...toRaw(todoList).filter(item => item.status === TODO_STATUS.DOING),
+        ...toRaw(todoList).filter(item => item.status !== TODO_STATUS.FINISHED && item.status !== TODO_STATUS.DOING),
+        ...toRaw(todoList).filter(item => item.status === TODO_STATUS.FINISHED),
+    ];
+    return list;
+}
 export {
     useTodo,
 }

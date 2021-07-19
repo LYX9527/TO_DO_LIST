@@ -1,9 +1,10 @@
+import { getListOrdered } from "@/hooks";
 import { IState, ITodo, TODO_STATUS } from "@/typings";
 import { REMOVE_TODO, SET_DOING_STATUS, SET_TODO, SET_TODO_LIST, SET_TODO_STATUS } from "./actionTypes";
 
 export default {
     [SET_TODO](state: IState, todo: ITodo): void {
-        state.list=[todo,...state.list]
+        state.list = [todo, ...state.list]
     },
     [SET_TODO_LIST](state: IState, todoList: ITodo[]): void {
         state.list = todoList;
@@ -27,7 +28,8 @@ export default {
                 }
             }
             return item;
-        })
+        });
+        state.list = getListOrdered(state.list);
     },
     [SET_DOING_STATUS](state: IState, id: number): void {
         state.list = state.list.map((item: ITodo) => {
@@ -39,6 +41,8 @@ export default {
                 }
             }
             return item;
-        })
-    }
+        });
+        state.list = getListOrdered(state.list);
+    },
+
 }

@@ -20,7 +20,6 @@ export default {
     onMounted(() => {
       setTodoList();
     });
-
     return{
       todoList:computed(()=>store.state.list)
     }

@@ -20,5 +20,5 @@ export default {
     },
     [SET_DOING_STATUS]({ commit }: ICtx, id: number): void {
         commit(SET_DOING_STATUS, id);
-    }
+    },
 }
