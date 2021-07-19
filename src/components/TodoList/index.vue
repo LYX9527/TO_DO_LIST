@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref } from "vue";
+import { defineComponent, PropType, Ref, ref, toRaw } from "vue";
 import { IUseTodo, useTodo } from "../../hooks";
 import { ITodo } from "../../typings";
 import item from "./item.vue";
@@ -31,12 +31,11 @@ export default defineComponent({
     const { removeTodo, setStatus, setDoing }: IUseTodo = useTodo();
     const high: Ref<number> = ref(130);
     const change = (): void => {
+      const num: ITodo[] = toRaw(props.todoList)!;
       if (high.value === 130) {
-        high.value = 400;
+        high.value = num.length * 50 - 20;
         return;
       }
-      console.log(props.todoList);
-
       high.value = 130;
     };
     return { removeTodo, setStatus, setDoing, high, change };
