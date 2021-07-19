@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="box">
   <todoinput/>
   <todolist
   :todoList="todoList"
@@ -27,4 +27,8 @@ export default {
 }
 </script>
 <style lang="less">
+.box{
+  margin:110px auto;
+  width: 600px;
+}
 </style>
