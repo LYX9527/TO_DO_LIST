@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="todovalue" @keyup="setTodovalue" placeholder="请输入待办"/>
+    <input type="text" v-model="todovalue" @keyup="setTodovalue" placeholder="请输入待办" maxlength="25"/>
   </div>
 </template>
 
