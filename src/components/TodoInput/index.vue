@@ -1,11 +1,17 @@
 <template>
   <div>
-    <input type="text" v-model="todovalue" @keyup="setTodovalue" placeholder="请输入待办" maxlength="25"/>
+    <input
+      type="text"
+      v-model="todovalue"
+      @keyup="setTodovalue"
+      placeholder="请输入待办"
+      maxlength="25"
+    />
   </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, toRefs, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { IUseTodo, useTodo } from "../../hooks";
 export default defineComponent({
   setup() {
@@ -17,19 +23,21 @@ export default defineComponent({
         todovalue.value = "";
       }
     };
+
     return { todovalue, setTodovalue };
   },
 });
 </script>
 
 <style scoped lang='less'>
-input{
+input {
   width: 600px;
   outline: none;
-  border:1px solid #888;
+  border: 1px solid #888;
   box-sizing: border-box;
-  border-radius:5px;
-  padding:0 10px;
+  border-radius: 5px;
+  padding: 0 10px;
   height: 30px;
+  background-color: #fff8;
 }
 </style>

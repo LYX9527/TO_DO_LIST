@@ -57,6 +57,7 @@ export default defineComponent({
 <style scoped lang='less'>
 .box {
   width: 600px;
+  border-radius:5px 5px 0 0;
   margin-top: 50px;
   border-top: 1px solid #ccc;
   padding-bottom: 50px;

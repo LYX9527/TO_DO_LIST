@@ -97,11 +97,13 @@ export default defineComponent({
   border-bottom: 1px solid #ddd;
   background-color: #fff;
   display: flex;
+  background-color: #fff8;
   & > div {
     height: 100%;
     line-height: 50px;
     &:nth-child(1) {
       width: 10%;
+      text-align: center;
     }
     &:nth-child(2) {
       width: 60%;

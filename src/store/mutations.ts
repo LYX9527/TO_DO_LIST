@@ -11,7 +11,7 @@ export default {
         state.list = todoList;
     },
     [REMOVE_TODO](state: IState, id: number): void {
-        state.list = state.list.filter((item: ITodo) => item.id !== id);;
+        state.list = state.list.filter((item: ITodo) => item.id !== id);
     },
     [SET_TODO_STATUS](state: IState, id: number): void {
         state.list = state.list.map((item: ITodo) => {
