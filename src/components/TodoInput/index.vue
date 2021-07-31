@@ -4,7 +4,7 @@
       type="text"
       v-model="todovalue"
       @keyup="setTodovalue"
-      placeholder="请输入待办"
+      placeholder="请输入待办,按回车确认"
       maxlength="25"
     />
   </div>
